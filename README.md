@@ -207,12 +207,43 @@ struct ReceiptItem {
   let price: Double
 }
 ```
+//a. Given the structs above, add a method to `Receipt` that returns the total cost of all items
+    
+    func costOfAll() -> Double{
+        var totalCost = 0.0
+        for item in items{
+            totalCost += item.price
+        }
+        return totalCost
+    }
+}
+    struct ReceiptItem {
+  let name: String
+  let price: Double
+}
 
-a. Given the structs above, add a method to `Receipt` that returns the total cost of all items
+//b. Write a function that takes in an array of `Receipts` and returns an array of `Receipts` that match a given store name
 
-b. Write a function that takes in an array of `Receipts` and returns an array of `Receipts` that match a given store name
 
-c. Write a function that takes in an array of `Receipts` and returns an array of those receipts sorted by price
+func receiptForStore(receipts: [Receipt], storeName: String) -> [Receipt] {
+    
+return receipts.filter({$0.storeName == storeName})
+    
+    
+}
+
+//c. Write a function that takes in an array of `Receipts` and returns an array of those receipts sorted by price
+
+
+func receiptForStore(receipts: [Receipt], price: Double) -> [Receipt] {
+    var priceArray = []
+    return receipts.sorted(by: {$0 < $1.storeName})
+
+    for receipt in receipts {
+        return receipt.sorted(by: {$0.price < $1.price})
+    }
+}
+
 
 ## Question 6
 
@@ -222,7 +253,7 @@ a. The code below doesn't compile.  Why?  Fix it so that it does compile.
 class Giant {
     var name: String
     var weight: Double
-    let homePlanet: String
+    var homePlanet: String
 
     init(name: String, weight: Double, homePlanet: String) {
         self.name = name
@@ -237,6 +268,7 @@ fred.name = "Brick"
 fred.weight = 999.2
 fred.homePlanet = "Mars"
 ```
+homeplanet is a let variable, it cant be assigned to, it is a constant
 
 b. Using the Giant class. What will the value of `edgar.name` be after the code below runs? How about `jason.name`? Explain why.
 
@@ -245,7 +277,8 @@ let edgar = Giant(name: "Edgar", weight: 520.0, homePlanet: "Earth")
 let jason = edgar
 jason.name = "Jason"
 ```
-
+edgar.name = "Edgar"
+jason.name = "Jason"
 ## Question 7
 
 ```
